@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>three.js infinite maze demo</title>
+<style>
+  body,#container{
+    margin:0;
+    padding:0;
+    border:0;
+    background:#000
+  }
+  #container{
+    width: 100%;
+    height: 100%;
+  }
+  #score{
+    background:#000;
+    padding-left:5px;
+    line-height:40px;
+    width:200px;
+    height:40px;
+    position:absolute;
+    top:5px;
+    left:5px;
+    color:#ff0;
+    font-family:Helvetica, Arial, sans-serif;
+    font-size:40px;
+    font-weight:bold;
+  }
+  .button{
+   padding:0px;
+   margin:0px;
+    position:absolute;
+    display:none;
+    top:100px;
+    left:10px;
+    text-align:center;
+    line-height:40px;
+    background:#ff0;
+    color:#000;
+    width:50px;
+    height:50px;
+ font-family:Helvetica, Arial, sans-serif;
+    font-size:40px;
+  }
+}
+  
+</style>
+<script src="lib/RequestAnimationFrame.js"></script>
+<script src="lib/Three.js"></script>
+<script src="lib/Stats.js"></script>
+<script src="main.js"></script>
+<script src="helpers/addCallbackFunctions.js"></script>
+<script src="helpers/isWebGLSupported.js"></script>
+<script src="models/walls.js"></script>
+<script src="models/player.js"></script>
+<script src="views/mainView.js"></script>
+<script src="views/followCam.js"></script>
+<script src="views/lights.js"></script>
+<script src="views/wallsView.js"></script>
+<script src="views/cookiesView.js"></script>
+<script src="views/playerView.js"></script>
+</head>
+<body>
+<div id="container"></div>
+<div id="score">0</div>
+<button id="left" class="button">&larr;</button>
+<button id="down" class="button">&darr;</button>
+<button id="right" class="button">&rarr;</button>
+</body>
+</html>
