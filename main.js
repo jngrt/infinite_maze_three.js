@@ -50,6 +50,8 @@ window.onload = function(){
     //add pub/sub functionality
     maze.helpers.addCallbackFunctions(maze);
     
+  	//haha
+  
     walls.init();
     player.init();
     mainView.init(document.getElementById('container'));
