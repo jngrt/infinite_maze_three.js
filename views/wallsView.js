@@ -119,7 +119,8 @@ maze.views.wallsView = (function namespace(){
         //wallMaterial = new THREE.MeshNormalMaterial({color:0x0000ff});
         wallMaterial = new THREE.MeshLambertMaterial( 
             { color: 0x4444ff, shading: THREE.FlatShading, overdraw: true, wireframeLinewidth:4 });
-        wallGeometry = new THREE.CubeGeometry(maze.UNIT_SIZE,maze.UNIT_SIZE,maze.UNIT_SIZE,1,1,1);
+        // wallGeometry = new THREE.CubeGeometry(maze.UNIT_SIZE,maze.UNIT_SIZE,maze.UNIT_SIZE,1,1,1);
+        wallGeometry = new THREE.BoxGeometry(maze.UNIT_SIZE,maze.UNIT_SIZE,maze.UNIT_SIZE,1,1,1);
         wallGroup = new THREE.Object3D();
         my.wallGroupPosition = wallGroup.position;
         

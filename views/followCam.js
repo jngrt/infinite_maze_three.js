@@ -17,7 +17,7 @@ maze.views.followCam = (function namespace(){
         targetReached:false
         , camera:null
     };
-    
+
     function getDifferenceBetweenAngles(a,b){
         var dif = a-b;
         while(dif<-180)dif+=360;
@@ -30,22 +30,23 @@ maze.views.followCam = (function namespace(){
         targetDeg = ((playerDir) * 90) % 360;
         my.targetReached = false;
     };
-    
+
     my.doAnim = function(){
         var difAngle = getDifferenceBetweenAngles(curDeg,targetDeg);
         if(Math.abs(difAngle)<2){
             my.targetReached = true;
             return;
         }
-        
+
         curDeg = (curDeg - difAngle * 0.05) % 360;
         curRad = curDeg * Math.PI/180;
-        
+
         my.camera.position.z = maze.CAM_DIST*Math.sin(curRad);
         my.camera.position.x = maze.CAM_DIST*Math.cos(curRad);
-        
+
         my.camera.lookAt(my.camera.target);
         debugMesh.position.copy(my.camera.position);
+        debugMesh.position.y += 10;
         debugMesh.lookAt(my.camera.target);
     };
     my.toggleDebug = function(){
@@ -54,7 +55,7 @@ maze.views.followCam = (function namespace(){
     my.init = function(_scene,_playerView){
         console.log("followCam.init");
         playerView = _playerView;
-        
+
         my.camera = new THREE.PerspectiveCamera(
             45
             , maze.VIEW_WIDTH/maze.VIEW_HEIGHT
@@ -67,15 +68,17 @@ maze.views.followCam = (function namespace(){
         targetDeg = 90;
         my.camera.target = new THREE.Vector3(0,0,0);
         my.camera.lookAt(my.camera.target);
-        
+
         var geom = new THREE.CylinderGeometry(0,5,10,3);
-        geom.applyMatrix(new THREE.Matrix4().setRotationFromEuler(
-            new THREE.Vector3(Math.PI/2,Math.PI,0)));
+        geom.applyMatrix(new THREE.Matrix4().makeRotationFromEuler(
+            new THREE.Euler(Math.PI/2,Math.PI/2,0,'XYZ')));
+
         debugMesh = new THREE.Mesh(geom,new THREE.MeshBasicMaterial({color:0xff00ff,wireframe:true,opacity:0}));
         _scene.add(debugMesh);
         debugMesh.position.copy(my.camera.position);
+        debugMesh.position.y += 10;
         debugMesh.lookAt(my.camera.target);
-        
+
     };
 
     return my;

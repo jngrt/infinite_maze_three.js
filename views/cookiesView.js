@@ -25,7 +25,7 @@ maze.views.cookiesView = (function namespace(){
                     block.position.set(x*maze.UNIT_SIZE,0,y*maze.UNIT_SIZE);
                     cookieGroup.add(block);
                     cookieMeshes[-1 * wallModel.data[x][y]] = block;
-                }  
+                }
     }
     my.removeCookie = function(id){
         if( cookieMeshes[-1*id] )
@@ -38,7 +38,7 @@ maze.views.cookiesView = (function namespace(){
             if(id < 0)
                 cookieGroup.remove((cookieMeshes.splice(-1*id,1,null))[0]);
         });
-        
+
         //shift and add blocks
         switch(dir){
         case maze.NORTH:
@@ -65,7 +65,7 @@ maze.views.cookiesView = (function namespace(){
             });
             makeCookies(0,2,0,maze.MAZE_SIZE);
             break;
-            
+
         }
         my.followWalls();
     };
@@ -80,12 +80,12 @@ maze.views.cookiesView = (function namespace(){
         //cookieMeshes.forEach(function(mesh){ if(mesh) mesh.material.wireframe = !mesh.material.wireframe;});
     };
 
-    
+
     my.doAnim = function(){
         //called each frame for animation
         var targetX = -playerModel.x * maze.UNIT_SIZE;
         var targetZ = -playerModel.y * maze.UNIT_SIZE;
-        
+
         //check if we reached our target
         my.targetReached = (Math.abs( cookieGroup.position.x-targetX) < maze.SPEED
                              && Math.abs(cookieGroup.position.z-targetZ) < maze.SPEED);
@@ -95,7 +95,7 @@ maze.views.cookiesView = (function namespace(){
             return;
         }
 
-        
+
         //otherwise animate
         if(cookieGroup.position.x > targetX){
             cookieGroup.position.x -= maze.SPEED;
@@ -107,17 +107,17 @@ maze.views.cookiesView = (function namespace(){
         }else if(cookieGroup.position.z < targetZ){
             cookieGroup.position.z += maze.SPEED;
         }
-      
+
     };
-   
-    
+
+
     my.init = function(scene,_wallPos){
         console.log(' cookiesview.init ' +_wallPos.x);
         wallModel = maze.models.walls;
         playerModel = maze.models.player;
         wallPos = _wallPos;
-        
-        cookieMaterial = new THREE.MeshLambertMaterial( 
+
+        cookieMaterial = new THREE.MeshLambertMaterial(
             { color: 0xffff44, wireframeLinewidth:2, shading: maze.webgl?THREE.SmoothShading:THREE.FlatShading, overdraw: true });
         //cookieMaterial = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
         //cookieGeometry = new THREE.CubeGeometry(maze.UNIT_SIZE/2,maze.UNIT_SIZE/2,maze.UNIT_SIZE/2,1,1,1);
