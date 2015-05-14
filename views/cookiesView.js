@@ -117,9 +117,11 @@ maze.views.cookiesView = (function namespace(){
         playerModel = maze.models.player;
         wallPos = _wallPos;
 
-        cookieMaterial = new THREE.MeshLambertMaterial(
-            { color: 0xffff44, wireframeLinewidth:2, shading: maze.webgl?THREE.SmoothShading:THREE.FlatShading, overdraw: true });
-        //cookieMaterial = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
+        //cookieMaterial = new THREE.MeshLambertMaterial(
+        //    { color: 0xffff44, wireframeLinewidth:2, shading: maze.webgl?THREE.SmoothShading:THREE.FlatShading, overdraw: true });
+
+        cookieMaterial = new THREE.MeshPhongMaterial( { color: 0xffff44, specular: 0x009900, shininess: 100, shading: THREE.SmoothShading } );
+          //cookieMaterial = new THREE.MeshBasicMaterial( { color: 0xffff00 } );
         //cookieGeometry = new THREE.CubeGeometry(maze.UNIT_SIZE/2,maze.UNIT_SIZE/2,maze.UNIT_SIZE/2,1,1,1);
         cookieGeometry = new THREE.SphereGeometry(1,3,3);
         cookieGroup = new THREE.Object3D();
